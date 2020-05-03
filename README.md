@@ -15,12 +15,12 @@ All color calculations were ported directly from [chroma.js](https://vis4.net/ch
 ### Basic usage
 First import the project:
 ```shell script
-yarn add sass-farbig
+yarn add -D sass-farbig
 ```
 
 Then add the SASS import:
 ```sass
-@import '~sass-farbig/farbig'
+@import '~sass-farbig'
 ```
 
 And generate a palette for a given base color:
