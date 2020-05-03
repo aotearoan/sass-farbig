@@ -1,3 +1,5 @@
+![npm-publish](https://github.com/aotearoan/sass-farbig/workflows/npm-publish/badge.svg?branch=master)
+
 # SASS Farbig
 
 ## Introduction
