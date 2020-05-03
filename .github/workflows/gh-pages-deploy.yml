@@ -9,17 +9,15 @@ jobs:
     name: Deploying to gh-pages
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Node.js for use with actions
-        uses: actions/setup-node@v1.1.0
-        with:
-        version:  12.x
-      - name: Checkout branch
-        uses: actions/checkout@v2
-
-      - name: Clean install dependencies
-        run: npm ci
-
-      - name: Run deploy script
-        run: |
-          git config user.name "aotearoan" && git config user.email "andrew@aotearoan.com"
-          npm run gh-pages-deploy
+    - name: Set up Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: Checkout branch
+      uses: actions/checkout@v2
+    - name: Clean install dependencies
+      run: npm ci
+    - name: Run deploy script
+      run: |
+        git config user.name "aotearoan" && git config user.email "andrew@aotearoan.com"
+        npm run gh-pages-deploy
