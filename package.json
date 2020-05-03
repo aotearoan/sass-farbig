@@ -1,6 +1,15 @@
 {
   "name": "@aotearoan/sass-farbig",
+  "description": "SASS color palette generation using HCL color space",
   "version": "1.0.0",
+  "keywords": [
+    "sass",
+    "css",
+    "color",
+    "palette",
+    "generation",
+    "hcl"
+  ],
   "main": "farbig.scss",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -47,5 +56,12 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "author": "Andrew Erickson <andrew@aotearoan.com>",
+  "license": "MIT",
+  "repository": "https://github.com/aotearoan/sass-farbig.git",
+  "homepage": "https://github.com/aotearoan/sass-farbig",
+  "bugs": {
+    "url": "https://github.com/aotearoan/sass-farbig/issues"
   }
 }
