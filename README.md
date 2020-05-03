@@ -1,4 +1,5 @@
 ![npm-publish](https://github.com/aotearoan/sass-farbig/workflows/npm-publish/badge.svg?branch=master)
+![Deploy to github pages](https://github.com/aotearoan/sass-farbig/workflows/Deploy%20to%20github%20pages/badge.svg?branch=master)
 
 # SASS Farbig
 
