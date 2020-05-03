@@ -18,7 +18,7 @@ yarn add sass-farbig
 
 Then add the SASS import:
 ```sass
-@import '~sass-farbig/farbig';
+@import '~sass-farbig/farbig'
 ```
 
 And generate a palette for a given base color:
