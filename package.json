@@ -1,7 +1,7 @@
 {
   "name": "@aotearoan/sass-farbig",
   "description": "SASS color palette generation using HCL color space",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "sass",
     "css",
@@ -15,7 +15,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "gh-pages-deploy": "node gh-pages-deploy.js"
   },
   "files": [
     "src/sass",
