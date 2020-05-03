@@ -13,6 +13,8 @@ All color calculations were ported directly from [chroma.js](https://vis4.net/ch
 ## How to use
 
 ### Basic usage
+View the test palettes [here](https://aotearoan.github.io/sass-farbig/).
+
 First import the project:
 ```shell script
 yarn add -D sass-farbig
