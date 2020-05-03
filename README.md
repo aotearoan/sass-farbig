@@ -23,13 +23,13 @@ Then add the SASS import:
 
 And generate a palette for a given base color:
 ```sass
-$color: #6c29d4;
-$palette: generate-palette($color);
+$color: #6c29d4
+$palette: generate-palette($color)
 ```
 
 This will output the following palette map:
 ```sass
-$palette = (
+$palette: (
   l5: #f6e9ff,
   l4: #ebd4ff,
   l3: #ddbcfe,
@@ -51,20 +51,20 @@ $neutral-palette: neutral-palette();
 
 Use the ```generate-color-classes``` mixin to generate classes for each step:
 ```sass
-$prefix: 'app-primary';
-$color: #6c29d4;
-$palette: generate-palette($color);
-@include generate-color-classes($prefix, $palette);
+$prefix: 'app-primary'
+$color: #6c29d4
+$palette: generate-palette($color)
+@include generate-color-classes($prefix, $palette)
 ```
 
 This will generate classes for colors and background colors e.g.:
 ```sass
 .app-primary-color-l5 {
-  color: #f6e9ff;
+  color: #f6e9ff
 }
 
 .app-primary-bg-color-l5 {
-  background-color: #f6e9ff;
+  background-color: #f6e9ff
 }
 // and so on...
 ```
@@ -72,15 +72,15 @@ This will generate classes for colors and background colors e.g.:
 ### Global variables
 The default text colors are defined as:
 ```sass
-$color-text-light: hcl(0, 0, 0)!default; // light theme dark text color
-$color-text-dark: hcl(0, 0, 100)!default; // dark theme light text color
+$color-text-light: hcl(0, 0, 0)!default // light theme dark text color
+$color-text-dark: hcl(0, 0, 100)!default // dark theme light text color
 ```
 
 The default chroma and luminance curves (steps) are defined as:
 ```sass
 // hcl saturation and brightness curves used to generate color palettes
-$chroma-curve:    (14, 25, 37, 50, 64, 75, 64, 50, 37, 25, 14)!default; // 64% chroma is the limit for readability with light text for l1 step at luminance 44%
-$luminance-curve: (94, 88, 81, 73, 64, 54, 44, 35, 27, 20, 14)!default;
+$chroma-curve:    (14, 25, 37, 50, 64, 75, 64, 50, 37, 25, 14)!default // 64% chroma is the limit for readability with light text for l1 step at luminance 44%
+$luminance-curve: (94, 88, 81, 73, 64, 54, 44, 35, 27, 20, 14)!default
 ```
 
 ### Changing the default curves
