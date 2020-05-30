@@ -9,7 +9,9 @@
     </header>
     <div id="app" class="app">
       <swatch-legend></swatch-legend>
+      <swatch name="low-contrast"></swatch>
       <swatch name="neutral"></swatch>
+      <swatch name="high-contrast"></swatch>
       <swatch name="primary"></swatch>
       <swatch name="info"></swatch>
       <swatch name="success"></swatch>

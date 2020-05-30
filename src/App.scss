@@ -7,6 +7,8 @@ $color-warn: #b67200;
 $color-error: #ec4145;
 
 $neutral-palette: neutral-palette();
+$low-contrast-palette: low-contrast-palette();
+$high-contrast-palette: high-contrast-palette();
 $primary-palette: generate-palette($color-primary);
 $info-palette: generate-palette($color-info);
 $success-palette: generate-palette($color-success);
@@ -14,13 +16,17 @@ $warn-palette: generate-palette($color-warn);
 $error-palette: generate-palette($color-error);
 
 @include generate-color-classes('farbig-neutral', $neutral-palette);
+@include generate-color-classes('farbig-low-contrast', $low-contrast-palette);
+@include generate-color-classes('farbig-high-contrast', $high-contrast-palette);
 @include generate-color-classes('farbig-primary', $primary-palette);
 @include generate-color-classes('farbig-info', $info-palette);
 @include generate-color-classes('farbig-success', $success-palette);
 @include generate-color-classes('farbig-warn', $warn-palette);
 @include generate-color-classes('farbig-error', $error-palette);
 
-.color-reference-neutral {
+.color-reference-neutral,
+.color-reference-low-contrast,
+.color-reference-high-contrast {
   background-color: #818181;
 }
 

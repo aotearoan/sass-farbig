@@ -102,6 +102,10 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   @return lab2rgb(nth($Lab, 1), nth($Lab, 2), nth($Lab, 3));
 }
 
+@function lch($l, $c, $h) {
+  @return hcl($h, $c, $l);
+}
+
 @function luminanceByChannel($c) {
   @if($c <= 0.03928) {
     @return $c / 12.92;
@@ -141,27 +145,37 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
           l3: hcl($hue, nth($chroma-curve, 3), nth($luminance-curve, 3)),
           l2: hcl($hue, nth($chroma-curve, 4), nth($luminance-curve, 4)),
           l1: hcl($hue, nth($chroma-curve, 5), nth($luminance-curve, 5)),
-          default: hcl($hue, nth($chroma-curve, 6), nth($luminance-curve, 6)),
-          d1: hcl($hue, nth($chroma-curve, 7), nth($luminance-curve, 7)),
-          d2: hcl($hue, nth($chroma-curve, 8), nth($luminance-curve, 8)),
-          d3: hcl($hue, nth($chroma-curve, 9), nth($luminance-curve, 9)),
-          d4: hcl($hue, nth($chroma-curve, 10), nth($luminance-curve, 10)),
-          d5: hcl($hue, nth($chroma-curve, 11), nth($luminance-curve, 11)),
+          d1: hcl($hue, nth($chroma-curve, 6), nth($luminance-curve, 6)),
+          d2: hcl($hue, nth($chroma-curve, 7), nth($luminance-curve, 7)),
+          d3: hcl($hue, nth($chroma-curve, 8), nth($luminance-curve, 8)),
+          d4: hcl($hue, nth($chroma-curve, 9), nth($luminance-curve, 9)),
+          d5: hcl($hue, nth($chroma-curve, 10), nth($luminance-curve, 10)),
   );
 }
 
 @function neutral-palette() {
+  @return generate-neutral-palette($luminance-curve);
+}
+
+@function low-contrast-palette() {
+  @return generate-neutral-palette($low-contrast-luminance-curve);
+}
+
+@function high-contrast-palette() {
+  @return generate-neutral-palette($high-contrast-luminance-curve);
+}
+
+@function generate-neutral-palette($luminance-curve) {
   @return (
     l5: hcl(0, 0, nth($luminance-curve, 1)),
     l4: hcl(0, 0, nth($luminance-curve, 2)),
     l3: hcl(0, 0, nth($luminance-curve, 3)),
     l2: hcl(0, 0, nth($luminance-curve, 4)),
     l1: hcl(0, 0, nth($luminance-curve, 5)),
-    default: hcl(0, 0, nth($luminance-curve, 6)),
-    d1: hcl(0, 0, nth($luminance-curve, 7)),
-    d2: hcl(0, 0, nth($luminance-curve, 8)),
-    d3: hcl(0, 0, nth($luminance-curve, 9)),
-    d4: hcl(0, 0, nth($luminance-curve, 10)),
-    d5: hcl(0, 0, nth($luminance-curve, 11)),
+    d1: hcl(0, 0, nth($luminance-curve, 6)),
+    d2: hcl(0, 0, nth($luminance-curve, 7)),
+    d3: hcl(0, 0, nth($luminance-curve, 8)),
+    d4: hcl(0, 0, nth($luminance-curve, 9)),
+    d5: hcl(0, 0, nth($luminance-curve, 10)),
   );
 }
