@@ -1,7 +1,7 @@
 {
   "name": "@aotearoan/sass-farbig",
   "description": "SASS color palette generation using HCL color space",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "keywords": [
     "sass",
     "css",
@@ -10,7 +10,11 @@
     "generator",
     "generation",
     "hcl",
-    "lch"
+    "lch",
+    "light",
+    "dark",
+    "theme",
+    "mode"
   ],
   "main": "farbig.scss",
   "scripts": {
