@@ -9,7 +9,8 @@
             `farbig-${name}-bg-color-l${6 - l}`,
             name === 'low-contrast' && l === 5 ? 'text-color-dark' : 'text-color-light',
           ]"
-        >{{ `${name}-l${6- l}` }}</div>
+        >{{ `${name}: l${6- l}` }}</div>
+        <br/>
         <div
           class="swatch-item"
           v-for="l in 5"
@@ -18,7 +19,7 @@
             `farbig-${name}-bg-color-d${l}`,
             name === 'low-contrast' && l <= 2 ? 'text-color-light' : 'text-color-dark',
           ]"
-        >{{ `${name}-d${l}` }}</div>
+        >{{ `${name}: d${l}` }}</div>
     </div>
 </template>
 

@@ -4,12 +4,19 @@
 # SASS Farbig
 
 ## Introduction
-
 SASS Farbig is an [HCL (aka LCH) color space](https://en.wikipedia.org/wiki/HCL_color_space) based SASS lib to help generate color palettes for use in design systems and applications based on any input color. The aim is to create light and dark theme palettes that provide WCAG compliant contrast ratios of at least 4.5:1 for readability.
 
-SASS Farbig provides the basic SASS functions for palette generation and allows for overriding the default chroma and luminance curves as well as the light and dark text colors.
+SASS Farbig provides the basic SASS functions for palette generation from a single reference color.
 
 All color calculations were ported directly from [chroma.js](https://vis4.net/chromajs/)
+
+## What's new in Version 3.0.0
+The fixed palettes have been removed in favour of dynamically generated palettes based on the reference colors. This allows for generation of palettes with wider color ranges which more closely (if not exactly) match the reference color.
+
+## How it works
+The generator determines the L1 color i.e, the closest color with the same hue as the reference color which is light enough to meet a contrast ratio of 4.5 with black text. Similarly the D1 color is determined by finding the closest color to the reference color which is dark enough to meet a contrast ratio of 4.5 with white text.
+
+Once these colors are determined the HCL/LCH chroma and luminance curves are generated specifically for the reference color and used to create the remaining color steps.
 
 ## How to use
 
@@ -78,24 +85,19 @@ This will generate classes for colors and background colors e.g.:
 ### Global variables
 The default text colors are defined as:
 ```sass
-$color-text-light: lch(0, 0, 0)!default // light theme dark text color
-$color-text-dark: lch(100, 0, 0)!default // dark theme light text color
+$color-text-light: black!default // light mode dark text color
+$color-text-dark: white!default // dark mode light text color
 ```
 
-The default chroma and luminance curves (steps) are defined as:
+Luminance curves (steps) are defined for neutral, low & high contrast color palettes only. For generating color palettes luminance and chroma curves are derived from the reference color:
 ```sass
-// hcl saturation and brightness curves used to generate color palettes
-$chroma-curve:    (14, 25, 37, 50, 75, 64, 50, 37, 25, 14)!default // 64% chroma is the limit for readability with light text for l1 step at luminance 44%
-$chroma-curve:    (14, 25, 37, 50, 64, 64, 50, 37, 25, 14)!default; // 64% chroma is the limit for readability with light text for l1 step at luminance 44%
-$luminance-curve: (94, 88, 81, 73, 64, 44, 35, 27, 20, 14)!default;
+// hcl luminance curves used to generate neutral color palettes
+$neutral-luminance-curve: (94, 88, 81, 73, 64, 44, 35, 27, 20, 14)!default;
 $low-contrast-luminance-curve: (88, 81, 72, 60, 48, 68, 55, 44, 35, 28)!default;
 $high-contrast-luminance-curve: (100, 95, 90, 85, 80, 20, 15, 10, 5, 0)!default;
 ```
 
-NOTE: Low contrast fails readability at L1, D1 & D2 - it is recommended to invert the text color when using these (as seen on the demo page).
-
-### Changing the default curves
-Changing the default curves is possible but may cause contrast ratio issues. The Vue app in this project can be used to view sample palettes and validate curve changes.
+NOTE: Low contrast fails readability at L1, D1 & D2 - it is recommended to invert the text color if using these (as seen on the demo page).
 
 ## Project setup
 ```

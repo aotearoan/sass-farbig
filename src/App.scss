@@ -1,14 +1,16 @@
 @import './sass/farbig';
 
-$color-primary: #9c64e5;
+$color-brand: #2e5b9b;
+$color-primary: #76329b;
 $color-info: #008fff;
-$color-success: #009b52;
-$color-warn: #b67200;
+$color-success: #3a9b79;
+$color-warn: #ffb22a;
 $color-error: #ec4145;
 
 $neutral-palette: neutral-palette();
 $low-contrast-palette: low-contrast-palette();
 $high-contrast-palette: high-contrast-palette();
+$brand-palette: generate-palette($color-brand);
 $primary-palette: generate-palette($color-primary);
 $info-palette: generate-palette($color-info);
 $success-palette: generate-palette($color-success);
@@ -18,6 +20,7 @@ $error-palette: generate-palette($color-error);
 @include generate-color-classes('farbig-neutral', $neutral-palette);
 @include generate-color-classes('farbig-low-contrast', $low-contrast-palette);
 @include generate-color-classes('farbig-high-contrast', $high-contrast-palette);
+@include generate-color-classes('farbig-brand', $brand-palette);
 @include generate-color-classes('farbig-primary', $primary-palette);
 @include generate-color-classes('farbig-info', $info-palette);
 @include generate-color-classes('farbig-success', $success-palette);
@@ -28,6 +31,10 @@ $error-palette: generate-palette($color-error);
 .color-reference-low-contrast,
 .color-reference-high-contrast {
   background-color: #818181;
+}
+
+.color-reference-brand {
+  background-color: $color-brand;
 }
 
 .color-reference-primary {
@@ -52,7 +59,7 @@ $error-palette: generate-palette($color-error);
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   padding: 24px 32px;
   transition: background-color .3s ease-in-out, color .3s ease-in-out;
@@ -105,8 +112,8 @@ header {
 .swatch-item,
 .color-reference {
   display: flex;
-  width: 150px;
-  min-height: 40px;
+  width: 115px;
+  min-height: 30px;
   padding: 12px 16px;
   align-items: center;
 }
@@ -160,87 +167,5 @@ header {
       background-color: $color-text-dark;
       color: $color-text-light;
     }
-  }
-}
-
-.validation-failed {
-  margin-left: 16px;
-  padding-left: 32px;
-
-  h2 {
-    height: 41px;
-  }
-
-  .validation-error-container {
-    overflow-y: scroll;
-    max-height: 11 * 64px;
-  }
-
-  .validation-error {
-    display: none;
-    padding: 12px 16px;
-    height: 25px;
-    white-space: nowrap;
-    align-items: center;
-    margin-bottom: 8px;
-    border-radius: 2px;
-
-    &:after {
-      display: inline-flex;
-      padding-left: 8px;
-    }
-  }
-}
-
-/*
-  For each hue step 0-359: validate L1 vs light theme text & validate D1 vs dark theme text for a contrast ration of at least 4.5:1.
-  NOTE: only validating against L1/D1 colors as these are the most likely to breach the contrast ratio.
-
-  Collect and report on those colors which breach the contrast ratio.
- */
-$validation-failed: false;
-
-@for $hue from 1 to 360 {
-  $l1: hcl($hue, nth($chroma-curve, 5), nth($luminance-curve, 5));
-  $l1-contrast: contrast-ratio($l1, $color-text-light);
-  @if($l1-contrast < 4.5) {
-    .validation-failed .validation-error-l1-#{$hue} {
-      &:after {
-        content: '(#{$l1} [#{$l1-contrast}])';
-      }
-
-      display: flex;
-      background-color: $l1;
-      color: $color-text-light;
-    }
-
-    $validation-failed: true;
-  }
-
-  $d1: hcl($hue, nth($chroma-curve, 7), nth($luminance-curve, 7));
-  $d1-contrast: contrast-ratio($d1, $color-text-dark);
-  @if($d1-contrast < 4.5) {
-    .validation-failed .validation-error-d1-#{$hue} {
-      &:after {
-        content: '(#{$d1} [#{$d1-contrast}])';
-      }
-
-      display: flex;
-      background-color: $d1;
-      color: $color-text-dark;
-    }
-
-    $validation-failed: true;
-  }
-}
-
-@if($validation-failed) {
-  .validation-failed {
-    display: flex;
-    flex-direction: column;
-  }
-} @else {
-  .validation-failed {
-    display: none;
   }
 }

@@ -12,18 +12,12 @@
       <swatch name="low-contrast"></swatch>
       <swatch name="neutral"></swatch>
       <swatch name="high-contrast"></swatch>
+      <swatch name="brand"></swatch>
       <swatch name="primary"></swatch>
       <swatch name="info"></swatch>
       <swatch name="success"></swatch>
       <swatch name="warn"></swatch>
       <swatch name="error"></swatch>
-      <div class="validation-failed">
-        <h2>Contrast ratio validation errors</h2>
-        <div class="validation-error-container">
-          <div v-for="i in 360" :key="`validation-l${i}`" class="validation-error" :class="`validation-error-l1-${i}`">L1 hue = {{ i }}</div>
-          <div v-for="i in 360" :key="`validation-d${i}`" class="validation-error" :class="`validation-error-d1-${i}`">D1 hue = {{ i }}</div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
