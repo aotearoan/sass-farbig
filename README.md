@@ -14,7 +14,7 @@ All color calculations were ported directly from [chroma.js](https://vis4.net/ch
 The fixed palettes have been removed in favour of dynamically generated palettes based on the reference colors. This allows for generation of palettes with wider color ranges which more closely (if not exactly) match the reference color.
 
 ## How it works
-The generator determines the L1 color i.e, the closest color with the same hue as the reference color which is light enough to meet a contrast ratio of 4.5 with black text. Similarly the D1 color is determined by finding the closest color to the reference color which is dark enough to meet a contrast ratio of 4.5 with white text.
+The generator determines the L1 color i.e, the closest color with the same hue as the reference color which is light enough to meet a contrast ratio of 4.5 with dark (#242424) text. Similarly the D1 color is determined by finding the closest color to the reference color which is dark enough to meet a contrast ratio of 4.5 with light (#eeeeee) text.
 
 Once these colors are determined the HCL/LCH chroma and luminance curves are generated specifically for the reference color and used to create the remaining color steps.
 
@@ -85,8 +85,8 @@ This will generate classes for colors and background colors e.g.:
 ### Global variables
 The default text colors are defined as:
 ```sass
-$color-text-light: black!default // light mode dark text color
-$color-text-dark: white!default // dark mode light text color
+$color-text-light: #242424 !default // light mode dark text color
+$color-text-dark: #eeeeee !default // dark mode light text color
 ```
 
 Luminance curves (steps) are defined for neutral, low & high contrast color palettes only. For generating color palettes luminance and chroma curves are derived from the reference color:
