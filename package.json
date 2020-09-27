@@ -1,7 +1,7 @@
 {
   "name": "@aotearoan/sass-farbig",
   "description": "SASS color palette generation using HCL color space",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "keywords": [
     "sass",
     "css",
