@@ -25,12 +25,12 @@ View the test palettes [here](https://aotearoan.github.io/sass-farbig/).
 
 First import the project:
 ```shell script
-yarn add -D sass-farbig
+yarn add -D @aotearoan/sass-farbig
 ```
 
 Then add the SASS import:
 ```sass
-@import '~sass-farbig'
+@import '~@aotearoan/sass-farbig'
 ```
 
 And generate a palette for a given base color:
