@@ -1,8 +1,9 @@
 @import '~mathsass/dist/math';
+@use "sass:math";
 
 // ported from chroma.js
-$degrees-2-radians: $PI / 180;
-$radians-2-degrees: 180 / $PI;
+$degrees-2-radians: math.div($PI, 180);
+$radians-2-degrees: math.div(180, $PI);
 
 // D65 standard referent
 $lab-Xn: 0.950470;
