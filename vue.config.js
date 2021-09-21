@@ -1,3 +1,10 @@
 module.exports = {
-    publicPath: '/sass-farbig/'
+    publicPath: '/sass-farbig/',
+    css: {
+        loaderOptions: {
+            sass: {
+                implementation: require('sass'),
+            },
+        },
+    },
 };
