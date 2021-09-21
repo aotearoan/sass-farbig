@@ -1,4 +1,4 @@
-@import './sass/farbig';
+@use './sass/farbig';
 
 $color-brand: #76329b;
 $color-primary: #3a9b79;
@@ -7,25 +7,25 @@ $color-success: #3a9b79;
 $color-warn: #ffb22a;
 $color-error: #ec4145;
 
-$neutral-palette: neutral-palette();
-$low-contrast-palette: low-contrast-palette();
-$high-contrast-palette: high-contrast-palette();
-$brand-palette: generate-palette($color-brand);
-$primary-palette: generate-palette($color-primary);
-$info-palette: generate-palette($color-info);
-$success-palette: generate-palette($color-success);
-$warn-palette: generate-palette($color-warn);
-$error-palette: generate-palette($color-error);
+$neutral-palette: farbig.neutral-palette();
+$low-contrast-palette: farbig.low-contrast-palette();
+$high-contrast-palette: farbig.high-contrast-palette();
+$brand-palette: farbig.generate-palette($color-brand);
+$primary-palette: farbig.generate-palette($color-primary);
+$info-palette: farbig.generate-palette($color-info);
+$success-palette: farbig.generate-palette($color-success);
+$warn-palette: farbig.generate-palette($color-warn);
+$error-palette: farbig.generate-palette($color-error);
 
-@include generate-color-classes('farbig-neutral', $neutral-palette);
-@include generate-color-classes('farbig-low-contrast', $low-contrast-palette);
-@include generate-color-classes('farbig-high-contrast', $high-contrast-palette);
-@include generate-color-classes('farbig-brand', $brand-palette);
-@include generate-color-classes('farbig-primary', $primary-palette);
-@include generate-color-classes('farbig-info', $info-palette);
-@include generate-color-classes('farbig-success', $success-palette);
-@include generate-color-classes('farbig-warn', $warn-palette);
-@include generate-color-classes('farbig-error', $error-palette);
+@include farbig.generate-color-classes('farbig-neutral', $neutral-palette);
+@include farbig.generate-color-classes('farbig-low-contrast', $low-contrast-palette);
+@include farbig.generate-color-classes('farbig-high-contrast', $high-contrast-palette);
+@include farbig.generate-color-classes('farbig-brand', $brand-palette);
+@include farbig.generate-color-classes('farbig-primary', $primary-palette);
+@include farbig.generate-color-classes('farbig-info', $info-palette);
+@include farbig.generate-color-classes('farbig-success', $success-palette);
+@include farbig.generate-color-classes('farbig-warn', $warn-palette);
+@include farbig.generate-color-classes('farbig-error', $error-palette);
 
 .color-reference-neutral,
 .color-reference-low-contrast,
@@ -66,12 +66,12 @@ body {
 
   &.dark {
     background-color: map-get($neutral-palette, 'd5');
-    color: $color-text-dark;
+    color: farbig.$color-text-dark;
   }
 
   &.light {
     background-color: map-get($neutral-palette, 'l5');
-    color: $color-text-light;
+    color: farbig.$color-text-light;
   }
 }
 
@@ -87,11 +87,11 @@ header {
 }
 
 .text-color-light {
-  color: $color-text-light;
+  color: farbig.$color-text-light;
 }
 
 .text-color-dark {
-  color: $color-text-dark;
+  color: farbig.$color-text-dark;
 }
 
 .app {
@@ -155,8 +155,8 @@ header {
 .light {
   .theme-switcher {
     .theme-selected {
-      background-color: $color-text-light;
-      color: $color-text-dark;
+      background-color: farbig.$color-text-light;
+      color: farbig.$color-text-dark;
     }
   }
 }
@@ -164,8 +164,8 @@ header {
 .dark {
   .theme-switcher {
     .theme-selected {
-      background-color: $color-text-dark;
-      color: $color-text-light;
+      background-color: farbig.$color-text-dark;
+      color: farbig.$color-text-light;
     }
   }
 }

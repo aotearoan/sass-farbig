@@ -1,9 +1,10 @@
-@import '~mathsass/dist/math';
-@use "sass:math";
+@use '~mathsass/dist/math' as mathCustom;
+@use 'sass:math';
+@use 'global-variables';
 
 // ported from chroma.js
-$degrees-2-radians: math.div($PI, 180);
-$radians-2-degrees: math.div(180, $PI);
+$degrees-2-radians: math.div(mathCustom.$PI, 180);
+$radians-2-degrees: math.div(180, mathCustom.$PI);
 
 // D65 standard referent
 $lab-Xn: 0.950470;
@@ -18,7 +19,7 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   @if($r <= 0.00304) {
     @return 255 * 12.92 * $r;
   } @else {
-    @return 255 * (1.055 * pow($r, 1 / 2.4) - 0.055);
+    @return 255 * (1.055 * math.pow($r, 1 / 2.4) - 0.055);
   }
 }
 
@@ -27,13 +28,13 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   @if ($v1 <= 0.04045) {
     @return $v1 / 12.92;
   } @else {
-    @return pow(($v1 + 0.055) / 1.055, 2.4);
+    @return math.pow(($v1 + 0.055) / 1.055, 2.4);
   }
 }
 
 @function xyz2lab($t) {
   @if ($t > $lab-t3) {
-    @return pow($t, 1 / 3);
+    @return math.pow($t, 1 / 3);
   } @else {
     @return $t / $lab-t2 + $lab-t0;
   }
@@ -79,17 +80,17 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   $y: nth($xyz, 2);
   $z: nth($xyz, 3);
   $L: 116 * $y - 16;
-  @return (max($L, 0), 500 * ($x - $y), 200 * ($y - $z));
+  @return (math.max($L, 0), 500 * ($x - $y), 200 * ($y - $z));
 }
 
 @function hcl2lab($h, $c, $l) {
   $hue: $h * $degrees-2-radians;
-  @return ($l, cos($hue) * $c, sin($hue) * $c);
+  @return ($l, math.cos($hue) * $c, math.sin($hue) * $c);
 }
 
 @function lab2hcl($L, $a, $b) {
-  $c: sqrt($a * $a + $b * $b);
-  $h: (atan2($b, $a) * $radians-2-degrees + 360) % 360;
+  $c: math.sqrt($a * $a + $b * $b);
+  $h: (mathCustom.atan2($b, $a) * $radians-2-degrees + 360) % 360;
   @return (round($h), $c, $L);
 }
 
@@ -111,7 +112,7 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   @if($c <= 0.03928) {
     @return $c / 12.92;
   } @else {
-    @return pow(($c + 0.055) / 1.055, 2.4);
+    @return math.pow(($c + 0.055) / 1.055, 2.4);
   }
 }
 
@@ -126,8 +127,8 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   $lum1: relativeLuminance($background-color);
   $lum2: relativeLuminance($text-color);
 
-  $lightest: max($lum1, $lum2);
-  $darkest: min($lum1, $lum2);
+  $lightest: math.max($lum1, $lum2);
+  $darkest: math.min($lum1, $lum2);
 
   $contrast: ($lightest + 0.05) / ($darkest + 0.05);
 
@@ -178,7 +179,7 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   $chroma: nth($hcl, 2);
   $luminance: nth($hcl, 3);
   // check contrast and adjust lightness up if contrast ratio too low
-  @while (contrast-ratio($reference-color, $color-text-light) < 4.5) {
+  @while (contrast-ratio($reference-color, global-variables.$color-text-light) < 4.5) {
     $luminance: $luminance + 1;
     $reference-color: hcl($hue, $chroma, $luminance);
   }
@@ -196,7 +197,7 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
   $chroma: nth($hcl, 2);
   $luminance: nth($hcl, 3);
   // check contrast and adjust lightness down if contrast ratio too low
-  @while (contrast-ratio($reference-color, $color-text-dark) < 4.5) {
+  @while (contrast-ratio($reference-color, global-variables.$color-text-dark) < 4.5) {
     $luminance: $luminance - 1;
     $reference-color: hcl($hue, $chroma, $luminance);
   }
@@ -256,15 +257,15 @@ $lab-t3: 0.008856452;  // t1 * t1 * t1
 }
 
 @function neutral-palette() {
-  @return generate-neutral-palette($neutral-luminance-curve);
+  @return generate-neutral-palette(global-variables.$neutral-luminance-curve);
 }
 
 @function low-contrast-palette() {
-  @return generate-neutral-palette($low-contrast-luminance-curve);
+  @return generate-neutral-palette(global-variables.$low-contrast-luminance-curve);
 }
 
 @function high-contrast-palette() {
-  @return generate-neutral-palette($high-contrast-luminance-curve);
+  @return generate-neutral-palette(global-variables.$high-contrast-luminance-curve);
 }
 
 @function generate-neutral-palette($luminance-curve) {
